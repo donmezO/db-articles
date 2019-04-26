@@ -1,0 +1,24 @@
+{
+	"articles" : [
+		{
+			"id" : 1,
+			"title" : "Titre 1",
+			"content" : "Content 1"
+		},
+		{
+			"id" : 2,
+			"title" : "Titre 2",
+			"content" : "Content 2"
+		},
+		{
+			"id" : 3,
+			"title" : "Titre 3",
+			"content" : "Content 3"
+		},
+		{
+			"id" : 4,
+			"title" : "Titre 4",
+			"content" : "Content 4"
+		}
+	]
+}
