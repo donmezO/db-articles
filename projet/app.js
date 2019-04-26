@@ -47,8 +47,9 @@ fetch('article.html.tpl')
 						let clone = template.cloneNode(true);
 							clone.querySelector('[article-title]').innerText = article.title;
 							clone.querySelector('[article-content]').innerText = article.excerpt;
+							clone.querySelector('[article-view]').setAttribute('id', article.id);
 						document.querySelector('#articles').appendChild(clone);
 					}
-				}
+				} 
 			});
 	});
