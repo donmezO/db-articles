@@ -45,8 +45,9 @@ fetch('article.html.tpl')
 					console.log(articles)
 					for (let article of articles){
 						let clone = template.cloneNode(true);
-							clone.querySelector('[article-content]').innerText = article.content;
-						document.querySelector(#articles).appendChild(clone);
+							clone.querySelector('[article-title]').innerText = article.title;
+							clone.querySelector('[article-content]').innerText = article.excerpt;
+						document.querySelector('#articles').appendChild(clone);
 					}
 				}
 			});
