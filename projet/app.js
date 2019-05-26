@@ -47,7 +47,6 @@ fetch('article.html.tpl')
 						let clone = template.cloneNode(true);
 							clone.querySelector('[article-title]').innerText = article.title;
 							clone.querySelector('[article-content]').innerText = article.excerpt;
-							console.log(article.img);
 							clone.querySelector('[article-img]').setAttribute("src", article.img);
 							clone.querySelector('[article-view]').setAttribute('id', article.id);
 							clone.querySelector('[article-view]').setAttribute('type', 'submit');
@@ -72,14 +71,14 @@ function displaySingle(id){
 			let parserHTML = new DOMParser();
 			let template = parserHTML.parseFromString(templateString, 'text/html').body.firstChild;
 
-			fetch('https://my-json-server.typicode.com/donmezO/db-articles/articles' + id)
+			fetch('https://my-json-server.typicode.com/donmezO/db-articles/articles/' + id)
 				.then(response => response.json())
 				.then(articles => {
 					if (articles){
 						let clone = template.cloneNode(true);
-						clone.querySelector('[article-title]').innerText = articles.title;
-						clone.querySelector('[article-content]').innerText = articles.content;
-						clone.querySelector('[article-img]').setAttribute("src", articles.img );
+							clone.querySelector('[article-title]').innerText = articles.title;
+							clone.querySelector('[article-content]').innerText = articles.content;
+							clone.querySelector('[article-img]').setAttribute("src", articles.img );
 						document.querySelector('#articles').appendChild(clone);
 					}
 				});
