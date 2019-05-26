@@ -47,9 +47,42 @@ fetch('article.html.tpl')
 						let clone = template.cloneNode(true);
 							clone.querySelector('[article-title]').innerText = article.title;
 							clone.querySelector('[article-content]').innerText = article.excerpt;
+							console.log(article.img);
+							clone.querySelector('[article-img]').setAttribute("src", article.img);
 							clone.querySelector('[article-view]').setAttribute('id', article.id);
+							clone.querySelector('[article-view]').setAttribute('type', 'submit');
+							clone.querySelector('[article-view]').addEventListener('click', function(){displaySingle(article.id)});
 						document.querySelector('#articles').appendChild(clone);
 					}
 				} 
 			});
 	});
+
+
+function displaySingle(id){
+	document.querySelectorAll('.col-md-4').forEach(function(a){
+		a.remove()
+	})
+	document.querySelectorAll('input').forEach(function(b){
+		b.remove()
+	})
+	fetch('single.html.tpl')
+		.then(response => response.text())
+		.then(templateString => {
+			let parserHTML = new DOMParser();
+			let template = parserHTML.parseFromString(templateString, 'text/html').body.firstChild;
+
+			fetch('https://my-json-server.typicode.com/donmezO/db-articles/articles' + id)
+				.then(response => response.json())
+				.then(articles => {
+					if (articles){
+						let clone = template.cloneNode(true);
+						clone.querySelector('[article-title]').innerText = articles.title;
+						clone.querySelector('[article-content]').innerText = articles.content;
+						clone.querySelector('[article-img]').setAttribute("src", articles.img );
+						document.querySelector('#articles').appendChild(clone);
+					}
+				});
+		});
+};
+
